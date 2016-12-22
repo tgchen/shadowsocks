@@ -129,37 +129,37 @@ pre_install(){
         echo "Error: Your OS is not supported. please change OS to CentOS/Debian/Ubuntu and try again."
         exit 1
     fi
-    # Set shadowsocks config password
-    echo "Please input password for shadowsocks-python:"
-    read -p "(Default password: 890-uiop):" shadowsockspwd
-    [ -z "${shadowsockspwd}" ] && shadowsockspwd="890-uiop"
-    echo
-    echo "---------------------------"
-    echo "password = ${shadowsockspwd}"
-    echo "---------------------------"
-    echo
-    # Set shadowsocks config port
-    while true
-    do
-    echo -e "Please input port for shadowsocks-python [1-65535]:"
-    read -p "(Default port: 8989):" shadowsocksport
-    [ -z "$shadowsocksport" ] && shadowsocksport="8989"
-    expr ${shadowsocksport} + 0 &>/dev/null
-    if [ $? -eq 0 ]; then
-        if [ ${shadowsocksport} -ge 1 ] && [ ${shadowsocksport} -le 65535 ]; then
-            echo
-            echo "---------------------------"
-            echo "port = ${shadowsocksport}"
-            echo "---------------------------"
-            echo
-            break
-        else
-            echo "Input error, please input correct number"
-        fi
-    else
-        echo "Input error, please input correct number"
-    fi
-    done
+    # # Set shadowsocks config password
+    # echo "Please input password for shadowsocks-python:"
+    # read -p "(Default password: 890-uiop):" shadowsockspwd
+    # [ -z "${shadowsockspwd}" ] && shadowsockspwd="890-uiop"
+    # echo
+    # echo "---------------------------"
+    # echo "password = ${shadowsockspwd}"
+    # echo "---------------------------"
+    # echo
+    # # Set shadowsocks config port
+    # while true
+    # do
+    # echo -e "Please input port for shadowsocks-python [1-65535]:"
+    # read -p "(Default port: 8989):" shadowsocksport
+    # [ -z "$shadowsocksport" ] && shadowsocksport="8989"
+    # expr ${shadowsocksport} + 0 &>/dev/null
+    # if [ $? -eq 0 ]; then
+    #     if [ ${shadowsocksport} -ge 1 ] && [ ${shadowsocksport} -le 65535 ]; then
+    #         echo
+    #         echo "---------------------------"
+    #         echo "port = ${shadowsocksport}"
+    #         echo "---------------------------"
+    #         echo
+    #         break
+    #     else
+    #         echo "Input error, please input correct number"
+    #     fi
+    # else
+    #     echo "Input error, please input correct number"
+    # fi
+    # done
     get_char(){
         SAVEDSTTY=`stty -g`
         stty -echo
@@ -169,9 +169,9 @@ pre_install(){
         stty echo
         stty $SAVEDSTTY
     }
-    echo
-    echo "Press any key to start...or Press Ctrl+C to cancel"
-    char=`get_char`
+    # echo
+    # echo "Press any key to start...or Press Ctrl+C to cancel"
+    # char=`get_char`
     #Install necessary dependencies
     if check_sys packageManager yum; then
         yum install -y unzip openssl-devel gcc swig python python-devel python-setuptools autoconf libtool libevent automake make curl curl-devel zlib-devel perl perl-devel cpio expat-devel gettext-devel
@@ -208,10 +208,10 @@ config_shadowsocks(){
     cat > /etc/shadowsocks.json<<-EOF
 {
     "server":"0.0.0.0",
-    "server_port":${shadowsocksport},
+    "server_port":8989,
     "local_address":"127.0.0.1",
     "local_port":1080,
-    "password":"${shadowsockspwd}",
+    "password":"Eman123us",
     "timeout":300,
     "method":"aes-256-cfb",
     "fast_open":false
@@ -303,8 +303,8 @@ install(){
     echo
     echo "Congratulations, shadowsocks server install completed!"
     echo -e "Your Server IP: \033[41;37m $(get_ip) \033[0m"
-    echo -e "Your Server Port: \033[41;37m ${shadowsocksport} \033[0m"
-    echo -e "Your Password: \033[41;37m ${shadowsockspwd} \033[0m"
+    echo -e "Your Server Port: \033[41;37m ${8989} \033[0m"
+    echo -e "Your Password: \033[41;37m ${Eman123us} \033[0m"
     echo -e "Your Local IP: \033[41;37m 127.0.0.1 \033[0m"
     echo -e "Your Local Port: \033[41;37m 1080 \033[0m"
     echo -e "Your Encryption Method: \033[41;37m aes-256-cfb \033[0m"
